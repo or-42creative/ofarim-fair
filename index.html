@@ -316,7 +316,7 @@
           <label for="lastName">שם משפחה <span class="req">*</span></label>
           <input id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="שם משפחה" required>
         </div>
-        <div class="field">
+        <div class="field full">
           <label for="numChildren">מספר ילדים <span class="req">*</span></label>
           <select id="numChildren" name="numChildren" required>
             <option value="" disabled selected>בחרו…</option>
@@ -331,16 +331,6 @@
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-        </div>
-        <div class="field">
-          <label for="phone">טלפון <span class="req">*</span></label>
-          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
-                 placeholder="05X-XXXXXXX" pattern="^0\d{1,2}-?\d{7}$" required>
-        </div>
-        <div class="field full">
-          <label for="email">אימייל <span class="req">*</span></label>
-          <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
-                 placeholder="name@example.com" required>
         </div>
         <div class="field full">
           <label>כיתות <span class="req">*</span> <span class="hint">(ניתן לבחור יותר מאחת)</span></label>
@@ -360,6 +350,16 @@
             <label class="chip"><input type="checkbox" name="grades" value="י״ב"><span>י״ב</span></label>
           </div>
           <span class="hint">המפגש עם נדב נוה (18:00) מיועד לכיתות ג׳ ומעלה.</span>
+        </div>
+        <div class="field">
+          <label for="email">אימייל <span class="req">*</span></label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
+                 placeholder="name@example.com" required>
+        </div>
+        <div class="field">
+          <label for="phone">טלפון <span class="req">*</span></label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                 placeholder="05X-XXXXXXX" pattern="^0\d{1,2}-?\d{7}$" required>
         </div>
       </div>
 
