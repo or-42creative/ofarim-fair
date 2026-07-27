@@ -48,11 +48,12 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date(),
-      data.firstName || '',
-      data.lastName  || '',
-      data.grade     || '',
+      data.firstName   || '',
+      data.lastName    || '',
+      data.numChildren || '',
+      data.grades      || data.grade || '',
       normalizePhone_(data.phone),
-      data.email     || ''
+      data.email       || ''
     ]);
 
     if (data.email) {
@@ -63,10 +64,11 @@ function doPost(e) {
         NOTIFY_EMAIL,
         'הרשמה חדשה · ' + EVENT_NAME,
         'נרשם/ת חדש/ה:\n' +
-        'שם: '    + (data.firstName || '') + ' ' + (data.lastName || '') + '\n' +
-        'כיתה: '  + (data.grade || '') + '\n' +
-        'טלפון: ' + (data.phone || '') + '\n' +
-        'מייל: '  + (data.email || '')
+        'שם: '          + (data.firstName || '') + ' ' + (data.lastName || '') + '\n' +
+        'מספר ילדים: '  + (data.numChildren || '') + '\n' +
+        'כיתות: '       + (data.grades || data.grade || '') + '\n' +
+        'טלפון: '       + (data.phone || '') + '\n' +
+        'מייל: '        + (data.email || '')
       );
     }
 
@@ -92,15 +94,21 @@ function parseInput_(e) {
   return (e && e.parameter) ? e.parameter : {};
 }
 
+const HEADERS = ['תאריך הרשמה', 'שם', 'שם משפחה', 'מספר ילדים', 'כיתות', 'טלפון', 'אימייל'];
+
 function getSheet_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
   }
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['תאריך הרשמה', 'שם הילד/ה', 'שם משפחה', 'כיתה', 'טלפון', 'אימייל']);
-    sheet.getRange(1, 1, 1, 6).setFontWeight('bold');
+  // כתיבת/תיקון שורת הכותרות כך שתתאים תמיד לעמודות הנוכחיות
+  const current = sheet.getLastRow() > 0
+    ? sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0]
+    : [];
+  if (current.join('|') !== HEADERS.join('|')) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
   }
   return sheet;

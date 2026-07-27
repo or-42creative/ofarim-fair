@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>יריד תחילת הלימודים בסניף עופרים | הרשמה</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>📚</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>📚</text></svg>">
   <meta name="description" content="יריד תחילת הלימודים בסניף עופרים – יום שני 7.9, כ״ה אלול. מפגש עם הסופר והיוטיובר נדב נוה. הרשמה מראש." />
 
   <!-- OpenGraph for WhatsApp/Facebook sharing -->
@@ -175,6 +177,20 @@
     .btn:active{transform:translateY(1px)}
     .btn[disabled]{opacity:.6;cursor:not-allowed}
     .form-note{text-align:center;font-size:13px;color:var(--muted);margin-top:14px}
+    .hint{font-size:13px;color:var(--muted);font-weight:400}
+    .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:2px}
+    .chip{position:relative;cursor:pointer;user-select:none}
+    .chip input{position:absolute;opacity:0;width:0;height:0}
+    .chip span{
+      display:inline-block;min-width:42px;text-align:center;padding:9px 14px;border-radius:11px;
+      border:1.5px solid #ddd3e8;background:#fff;color:var(--ink);font-weight:700;font-size:15px;
+      transition:all .12s;
+    }
+    .chip input:checked + span{
+      background:var(--purple);border-color:var(--purple);color:#fff;
+      box-shadow:0 4px 12px rgba(95,43,140,.28);
+    }
+    .chip input:focus-visible + span{box-shadow:0 0 0 3px rgba(138,79,176,.35)}
     .err{color:var(--red);font-size:14px;text-align:center;margin-top:12px;min-height:1em}
 
     /* ===== thank you ===== */
@@ -293,7 +309,7 @@
 
       <div class="grid">
         <div class="field">
-          <label for="firstName">שם הילד/ה <span class="req">*</span></label>
+          <label for="firstName">שם <span class="req">*</span></label>
           <input id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="שם פרטי" required>
         </div>
         <div class="field">
@@ -301,24 +317,20 @@
           <input id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="שם משפחה" required>
         </div>
         <div class="field">
-          <label for="grade">כיתה <span class="req">*</span></label>
-          <select id="grade" name="grade" required>
-            <option value="" disabled selected>בחרו כיתה…</option>
-            <option value="גן">גן</option>
-            <option value="א׳">א׳</option>
-            <option value="ב׳">ב׳</option>
-            <option value="ג׳">ג׳</option>
-            <option value="ד׳">ד׳</option>
-            <option value="ה׳">ה׳</option>
-            <option value="ו׳">ו׳</option>
-            <option value="ז׳">ז׳</option>
-            <option value="ח׳">ח׳</option>
-            <option value="ט׳">ט׳</option>
-            <option value="י׳">י׳</option>
-            <option value="י״א">י״א</option>
-            <option value="י״ב">י״ב</option>
+          <label for="numChildren">מספר ילדים <span class="req">*</span></label>
+          <select id="numChildren" name="numChildren" required>
+            <option value="" disabled selected>בחרו…</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
           </select>
-          <span style="font-size:13px;color:var(--muted)">המפגש עם נדב נוה (18:00) מיועד לכיתות ג׳ ומעלה.</span>
         </div>
         <div class="field">
           <label for="phone">טלפון <span class="req">*</span></label>
@@ -329,6 +341,25 @@
           <label for="email">אימייל <span class="req">*</span></label>
           <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
                  placeholder="name@example.com" required>
+        </div>
+        <div class="field full">
+          <label>כיתות <span class="req">*</span> <span class="hint">(ניתן לבחור יותר מאחת)</span></label>
+          <div class="chips" id="grades">
+            <label class="chip"><input type="checkbox" name="grades" value="גן"><span>גן</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="א׳"><span>א׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ב׳"><span>ב׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ג׳"><span>ג׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ד׳"><span>ד׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ה׳"><span>ה׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ו׳"><span>ו׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ז׳"><span>ז׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ח׳"><span>ח׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="ט׳"><span>ט׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="י׳"><span>י׳</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="י״א"><span>י״א</span></label>
+            <label class="chip"><input type="checkbox" name="grades" value="י״ב"><span>י״ב</span></label>
+          </div>
+          <span class="hint">המפגש עם נדב נוה (18:00) מיועד לכיתות ג׳ ומעלה.</span>
         </div>
       </div>
 
@@ -412,12 +443,20 @@
         return;
       }
 
+      const grades = Array.from(form.querySelectorAll('input[name="grades"]:checked')).map(c => c.value);
+      if (grades.length === 0) {
+        errMsg.textContent = 'יש לבחור לפחות כיתה אחת.';
+        document.getElementById('grades').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       const data = {
-        firstName: form.firstName.value.trim(),
-        lastName:  form.lastName.value.trim(),
-        grade:     form.grade.value,
-        phone:     form.phone.value.trim(),
-        email:     form.email.value.trim()
+        firstName:   form.firstName.value.trim(),
+        lastName:    form.lastName.value.trim(),
+        numChildren: form.numChildren.value,
+        grades:      grades.join(', '),
+        phone:       form.phone.value.trim(),
+        email:       form.email.value.trim()
       };
 
       submitBtn.disabled = true;
