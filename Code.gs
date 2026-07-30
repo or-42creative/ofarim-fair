@@ -20,13 +20,13 @@
 const SHEET_NAME   = 'הרשמות';
 const PAYBOX_URL   = 'https://links.payboxapp.com/B9Z3yPFb74b';
 const EVENT_NAME   = 'יריד תחילת הלימודים בסניף עופרים';
-const EVENT_WHEN   = 'יום שני | 7.9 | כ״ה אלול';
+const EVENT_WHEN   = 'יום חמישי | 27.8 | י״ד אלול';
 const SENDER_NAME  = 'סניף עופרים';
-// קישור "הוספה ליומן Google" — יום שני 7.9.2026, 17:00–19:00 (שעון ישראל):
+// קישור "הוספה ליומן Google" — יום חמישי 27.8.2026, 17:00–19:00 (שעון ישראל):
 const CAL_URL =
   'https://calendar.google.com/calendar/render?action=TEMPLATE' +
   '&text='   + encodeURIComponent(EVENT_NAME) +
-  '&dates=20260907T170000/20260907T190000' +
+  '&dates=20260827T170000/20260827T190000' +
   '&ctz=Asia/Jerusalem' +
   '&location=' + encodeURIComponent('סניף עופרים, בית אריה-עופרים') +
   '&details='  + encodeURIComponent(
